@@ -46,4 +46,4 @@ def processVOD(vodUrl, startTime, duration):
 
         frame_count += 1
 
-processVOD("https://www.youtube.com/watch?v=cECiGFGOeWQ", 386, 2957)
+processVOD("https://www.youtube.com/watch?v=CZMqTbFLYTY", 1293, 1996)
