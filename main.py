@@ -5,13 +5,12 @@ import cv2
 # 64 pixels matches POV agent logo (bottom center of screen)
 
 
-img = cv2.imread("assets\\round1_capture_5v5.PNG", 0)
-template = cv2.resize(cv2.imread(
-    "assets/icons/Jett_icon.png", 0), (0, 0), fx=0.25, fy=0.25)
+# img = cv2.imread('test_crops\\left_8773598.png', 0)
+img = cv2.flip(cv2.imread("test_crops\\right_761828.png", 0), 1)
+template = cv2.imread("icons_from_screenshots\\viper.png", 0)
 h, w = template.shape
 
-methods = [cv2.TM_CCOEFF, cv2.TM_CCOEFF_NORMED, cv2.TM_CCORR,
-           cv2.TM_CCORR_NORMED, cv2.TM_SQDIFF, cv2.TM_SQDIFF_NORMED]
+methods = [cv2.TM_CCOEFF_NORMED, cv2.TM_CCORR_NORMED, cv2.TM_SQDIFF_NORMED]
 
 for method in methods:
     img2 = img.copy()
@@ -23,6 +22,8 @@ for method in methods:
     else:
         location = max_loc
 
+    confidence = result[location[1], location[0]]
+    print(confidence)
     bottom_right = (location[0] + w, location[1] + h)
     color = (255, 0, 0)
     cv2.rectangle(img2, location, bottom_right, color, 2)

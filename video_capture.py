@@ -34,8 +34,9 @@ while True and cap.get(cv2.CAP_PROP_POS_MSEC)<=end_time*milliseconds:
     success, img = cap.read()
     cv2.imshow("Image", img)
     cv2.waitKey(1)
-    frame_count += 1
-
-    if frame_count % 1000 == 0:
-        file_name = "test_screenshots\capture" + str(frame_count / 1000) + ".png"
+    
+    if frame_count % 300 == 0:
+        file_name = "test_screenshots\capture" + str(int(frame_count / 300)) + ".png"
         cv2.imwrite(file_name, img)
+
+    frame_count += 1

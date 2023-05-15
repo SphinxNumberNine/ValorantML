@@ -5,7 +5,7 @@ import os
 best_matches_count = -1
 orb = cv2.ORB_create()
 bf = cv2.BFMatcher()
-image = cv2.imread("assets\screencap_1_jett_hud.png", 0)
+image = cv2.imread("assets\screencap_1_jett_only.png", 0)
 kp2, des2 = orb.detectAndCompute(image, None)
 best_kp1, best_des1 = None, None
 best_matches = None
@@ -17,7 +17,7 @@ for filename in os.listdir("assets\icons"):
     matches = bf.knnMatch(des1, des2, k=2)
     good = []
     for m, n in matches:
-        if m.distance < 0.8 * n.distance:
+        if m.distance < 0.7 * n.distance:
             good.append([m])
     print(len(good))
     if len(good) > best_matches_count:

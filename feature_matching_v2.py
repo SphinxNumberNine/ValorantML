@@ -1,8 +1,8 @@
 import cv2
 import numpy as np
 
-template = cv2.imread("assets\icons\jett_icon.png", 0)
-image = cv2.imread("assets\jett_hud_example.png", 0)
+template = cv2.imread("icons_from_screenshots\\viper.png", 0)
+image = cv2.imread('test_crops\\left_488546.png', 0)
 
 orb = cv2.ORB_create()
 
@@ -15,7 +15,7 @@ print(matches)
 
 good = []
 for m, n in matches:
-    if m.distance < 0.6 * n.distance:
+    if m.distance < 0.8 * n.distance:
         good.append([m])
 
 
