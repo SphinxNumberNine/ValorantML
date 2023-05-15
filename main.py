@@ -5,9 +5,9 @@ import cv2
 # 64 pixels matches POV agent logo (bottom center of screen)
 
 
-img = cv2.imread("assets/round1_capture_5v5.png", 0)
+img = cv2.imread("assets\\round1_capture_5v5.PNG", 0)
 template = cv2.resize(cv2.imread(
-    "assets/Jett_icon.png", 0), (0, 0), fx=0.25, fy=0.25)
+    "assets/icons/Jett_icon.png", 0), (0, 0), fx=0.25, fy=0.25)
 h, w = template.shape
 
 methods = [cv2.TM_CCOEFF, cv2.TM_CCOEFF_NORMED, cv2.TM_CCORR,
