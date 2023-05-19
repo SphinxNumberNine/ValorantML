@@ -56,5 +56,15 @@
             "left_agents": ["killjoy", "sage", "omen", "neon", "kayo"],
             "right_agents": ["cypher", "reyna", "neon", "breach", "omen"]
         }
+    ],
+    "test_vods": [
+        {
+            "name": "100TvsLEVLotus",
+            "url": "https://www.youtube.com/watch?v=KQyCe2v_Wws",
+            "start_time": 513,
+            "duration": 3445,
+            "left_agents": ["skye", "jett", "viper", "killjoy", "omen"],
+            "right_agents": ["omen", "killjoy", "viper", "skye", "jett"]
+        }
     ]
 }

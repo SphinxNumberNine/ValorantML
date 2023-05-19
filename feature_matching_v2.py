@@ -1,21 +1,28 @@
 import cv2
 import numpy as np
 
-template = cv2.imread("icons_from_screenshots\\viper.png", 0)
-image = cv2.imread('test_crops\\left_488546.png', 0)
+template = cv2.imread("assets\\ability_icons\\Cloudburst.png", 0)
+image = cv2.imread('assets\\cloudburst_crop.png', 0)
 
-orb = cv2.ORB_create()
+# orb = cv2.ORB_create()
+sift = cv2.SIFT_create()
 
-kp1, des1 = orb.detectAndCompute(template, None)
-kp2, des2 = orb.detectAndCompute(image, None)
+kp1, des1 = sift.detectAndCompute(template, None)
+kp2, des2 = sift.detectAndCompute(image, None)
 
-bf = cv2.BFMatcher()
-matches = bf.knnMatch(des1, des2, k=2)
-print(matches)
+# bf = cv2.BFMatcher()
+# matches = bf.knnMatch(des1, des2, k=2)
+# print(matches)
+
+FLANN_INDEX_KDTREE = 1
+index_params = dict(algorithm = FLANN_INDEX_KDTREE, trees = 5)
+search_params = dict(checks = 50)
+flann = cv2.FlannBasedMatcher(index_params, search_params)
+matches = flann.knnMatch(des1,des2,k=2)
 
 good = []
 for m, n in matches:
-    if m.distance < 0.8 * n.distance:
+    if m.distance < 0.7 * n.distance:
         good.append([m])
 
 

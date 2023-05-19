@@ -33,6 +33,7 @@ def processVOD(vodName, vodUrl, startTime, duration):
     # Will execute till the duration specified by the user
     frame_count = 0
     video_framerate = cap.get(cv2.CAP_PROP_FPS)
+    print("Framerate: " + str(video_framerate))
     if video_framerate > 30:
         frame_skip = 8
     else:
@@ -47,7 +48,7 @@ def processVOD(vodName, vodUrl, startTime, duration):
         cv2.waitKey(1)
 
         if frame_count % 300 == 0:
-            file_name = "screenshots\\" + vodName + \
+            file_name = "test_screenshots\\" + vodName + \
                 str(capture_counter) + ".png"
             capture_names.append(file_name)
             cv2.imwrite(file_name, img)
@@ -87,9 +88,9 @@ def processSingleImage(filePath, left_agents, right_agents):
             0:icon_y_offset, 0:icon_x_offset].copy()
         # cv2.imwrite("test_crops\\left_" + file_name + ".png", player1_left)
         # cv2.imwrite("test_crops\\right_" + file_name + ".png", player1_right)
-        cv2.imwrite("dataset\\" + left_agents[counter] + "\\" +
+        cv2.imwrite("test_dataset\\" + left_agents[counter] + "\\" +
                     file_name + ".png", hud_icon_left)
-        cv2.imwrite("dataset\\" + right_agents[counter] + "\\" +
+        cv2.imwrite("test_dataset\\" + right_agents[counter] + "\\" +
                     file_name + ".png", hud_icon_right)
         counter += 1
 
@@ -101,8 +102,6 @@ def processImages():
         except:
             print("File not found")
 
-
-# processVOD("https://www.youtube.com/watch?v=CZMqTbFLYTY", 1293, 1996)
 
 def processSingleVod(vod):
     processed_files = processVOD(
@@ -139,4 +138,5 @@ def recover():
                 processSingleImage(f, vod["left_agents"], vod["right_agents"])
 
 
-recover()
+# processSingleImage("test_screenshots\\100TvsLEVLotus7.png", ["skye", "jett", "viper", "killjoy", "omen"], ["omen", "killjoy", "viper", "skye", "jett"])
+processVOD("any", "https://www.youtube.com/watch?v=KQyCe2v_Wws", 513, 3445)

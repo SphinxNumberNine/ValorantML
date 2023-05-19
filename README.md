@@ -11,3 +11,17 @@ Data Labeling Instructions:
 - In the popup menu that shows up, select the agent that the current picture is showing
 - Press `D` to move onto the next image
 - Repeat the last 3 steps until all images in the directory are labeled
+
+Immediate Tasks:
+- build ultimate classifier
+    - crop screenshots to only ults, classify the same way we did for agents
+- dot counter for abilities (ASHWATH)
+- internal state logic for current "inventory" of abilities
+- capturing current round time, starting timer thread when bomb gets planted
+
+Ways Rounds Can End: (investigate later)
+- Eliminations (either side)
+- Time runs out (t side)
+- T side plants, bomb explodes
+- T side plants, ct defuses
+- T side plants, gets all the kills
