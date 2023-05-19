@@ -5,6 +5,7 @@ import random
 import os
 import json
 import threading
+import numpy as np
 
 # vodUrl = link to youtube VOD of valorant match
 # startTime = game start time within the vod (in seconds)
@@ -82,8 +83,11 @@ def processSingleImage(filePath, left_agents, right_agents):
     for x, y in start_points:
         file_name = str(random.randint(0, 10000000))
         player1_left = cropped_image[y:y+y_offset, x:x+x_offset].copy()
+        print("left processing " + left_agents[counter])
+        crop_single_hud(player1_left)
         hud_icon_left = player1_left[0:icon_y_offset, 0:icon_x_offset].copy()
         player1_right = cropped_image_2[y:y+y_offset, x:x+x_offset].copy()
+        crop_single_hud(cv2.flip(player1_right, 1))
         hud_icon_right = (cv2.flip(player1_right, 1))[
             0:icon_y_offset, 0:icon_x_offset].copy()
         # cv2.imwrite("test_crops\\left_" + file_name + ".png", player1_left)
@@ -137,6 +141,68 @@ def recover():
                 print("Proccesing " + f)
                 processSingleImage(f, vod["left_agents"], vod["right_agents"])
 
+def count_dots(img):
+    img = masked_image(img)
+    print(img.dtype)
+    img = cv2.normalize(img, dst=None, alpha=0, beta=255,
+                        norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8U)
+    circles = cv2.HoughCircles(
+        img, cv2.HOUGH_GRADIENT, 1, 1, param1=20, param2=8, minRadius=1, maxRadius=100)
+    index = 0
+    print(circles)
+    if circles is not None:
+        circles = circles[0]
+        # convert the (x, y) coordinates and radius of the circles to integers
+        circles = np.round(circles[:]).astype("int")
 
-# processSingleImage("test_screenshots\\100TvsLEVLotus7.png", ["skye", "jett", "viper", "killjoy", "omen"], ["omen", "killjoy", "viper", "skye", "jett"])
-processVOD("any", "https://www.youtube.com/watch?v=KQyCe2v_Wws", 513, 3445)
+        # loop over the (x, y) coordinates and radius of the circles
+        for (x, y, r) in circles:
+            # draw the circle in the output image,
+            #   then draw a rectangle corresponding to the center of the circle
+            cv2.circle(img, (x, y), r, (255, 0, 255), 2)
+            cv2.rectangle(img, (x - 5, y - 5),
+                          (x + 5, y + 5), (255, 0, 255), -1)
+
+            index = index + 1
+            # print str(index) + " : " + str(r) + ", (x,y) = " + str(x) + ', ' + str(y)
+        print('No. of circles detected = {}'.format(index))
+        return index
+    else:
+        print("no circles")
+        return 0
+    
+def masked_image(img):
+    # img = cv2.imread(path_to_img)
+    lower, upper = np.array([220, 220, 220]), np.array([255, 255, 255])
+    mask = cv2.inRange(img, lower, upper)
+    result = cv2.bitwise_and(img, img, mask=mask)
+    result = cv2.cvtColor(result, cv2.COLOR_BGR2GRAY)
+    print(result.shape)
+    cv2.imshow("masked image", result)
+    cv2.waitKey(0)
+    return result
+
+def crop_single_hud(single_hud_img):  # non-astra usecase
+    start_points = [(70, 32), (111, 32), (150, 32)]
+    # start_points = [(70, 32)]
+    x_offset, y_offset = 40, 17
+    # x_offset, y_offset = 120, 20
+
+    img = single_hud_img.copy()
+    h, w, alpha = img.shape
+    print(img.shape)
+    cv2.imshow("original", img)
+
+    counter = 0
+    for x, y in start_points:
+        crop = img[y: y + y_offset, x: x + x_offset]
+        # cv2.imshow("crop" + str(counter), crop)
+        # cv2.imwrite("ability_crops\\" + str(counter) + ".png", crop)
+        count_dots(crop)
+        counter += 1
+
+    cv2.waitKey(0)
+
+
+processSingleImage("screenshots\\RRQvsFUTLotus7.png", ["killjoy", "sage", "omen", "neon", "kayo"], ["cypher", "reyna", "neon", "breach", "omen"])
+# processVOD("any", "https://www.youtube.com/watch?v=KQyCe2v_Wws", 513, 3445)

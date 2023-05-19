@@ -63,8 +63,10 @@ def count_dots(path_to_img):
             index = index + 1
             # print str(index) + " : " + str(r) + ", (x,y) = " + str(x) + ', ' + str(y)
         print('No. of circles detected = {}'.format(index))
+        return index
     else:
         print("no circles")
+        return 0
 
 
 def count_dots_alt(path_to_img):
