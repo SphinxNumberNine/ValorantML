@@ -141,13 +141,16 @@ def recover():
                 print("Proccesing " + f)
                 processSingleImage(f, vod["left_agents"], vod["right_agents"])
 
+
 def count_dots(img):
     img = masked_image(img)
+    # cv2.imshow("blobbed image", img)
+    # cv2.waitKey(0)
     print(img.dtype)
     img = cv2.normalize(img, dst=None, alpha=0, beta=255,
                         norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8U)
     circles = cv2.HoughCircles(
-        img, cv2.HOUGH_GRADIENT, 1, 1, param1=20, param2=8, minRadius=1, maxRadius=100)
+        img, cv2.HOUGH_GRADIENT, 1, 3, param1=20, param2=9, minRadius=1, maxRadius=100)
     index = 0
     print(circles)
     if circles is not None:
@@ -170,9 +173,29 @@ def count_dots(img):
     else:
         print("no circles")
         return 0
-    
+
+
+def count_blobs(img):
+    img = masked_image(img)
+    img = cv2.bitwise_not(img)
+    img = cv2.resize(img, dsize=(0,0), fx=2, fy=2)
+    # cv2.imshow("blobbed image", img)
+    # cv2.waitKey(0)
+    print(img.dtype)
+    img = cv2.normalize(img, dst=None, alpha=0, beta=255,
+                        norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8U)
+    # Set up the detector with default parameters.
+    detector = cv2.SimpleBlobDetector_create()
+
+    # Detect blobs.
+    keypoints = detector.detect(img)
+    print("Found {} blobs".format(str(len(keypoints))))
+    return len(keypoints)
+
+
 def masked_image(img):
     # img = cv2.imread(path_to_img)
+    img = cv2.GaussianBlur(img, (5, 5), 0)
     lower, upper = np.array([220, 220, 220]), np.array([255, 255, 255])
     mask = cv2.inRange(img, lower, upper)
     result = cv2.bitwise_and(img, img, mask=mask)
@@ -181,6 +204,7 @@ def masked_image(img):
     cv2.imshow("masked image", result)
     cv2.waitKey(0)
     return result
+
 
 def crop_single_hud(single_hud_img):  # non-astra usecase
     start_points = [(70, 32), (111, 32), (150, 32)]
@@ -198,11 +222,11 @@ def crop_single_hud(single_hud_img):  # non-astra usecase
         crop = img[y: y + y_offset, x: x + x_offset]
         # cv2.imshow("crop" + str(counter), crop)
         # cv2.imwrite("ability_crops\\" + str(counter) + ".png", crop)
-        count_dots(crop)
+        count_blobs(crop)
         counter += 1
 
     cv2.waitKey(0)
 
 
-processSingleImage("screenshots\\RRQvsFUTLotus7.png", ["killjoy", "sage", "omen", "neon", "kayo"], ["cypher", "reyna", "neon", "breach", "omen"])
+processSingleImage("screenshots\\C9vsDRXHaven6.png", ["cypher", "skye", "omen", "phoenix", "chamber"], ["sova", "jett", "breach", "omen", "killjoy"])
 # processVOD("any", "https://www.youtube.com/watch?v=KQyCe2v_Wws", 513, 3445)
