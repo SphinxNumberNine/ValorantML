@@ -1,0 +1,50 @@
+# Train/val/test sets as 1) dir: path/to/imgs, 2) file: path/to/imgs.txt, or 3) list: [path/to/imgs1, path/to/imgs2, ..]
+path: ./map_dataset  # dataset root dir
+train: images/train  # train images (relative to 'path')
+val: images/val  # val images (relative to 'path')
+test:  # test images (optional)
+
+# Classes (80 COCO classes)
+names:
+  0: atk_astra
+  1: atk_breach
+  2: atk_brimstone
+  3: atk_chamber
+  4: atk_cypher
+  5: atk_fade
+  6: atk_gekko
+  7: atk_harbor
+  8: atk_jett
+  9: atk_kayo
+  10: atk_killjoy
+  11: atk_neon
+  12: atk_omen
+  13: atk_phoenix
+  14: atk_raze
+  15: atk_reyna
+  16: atk_sage
+  17: atk_skye
+  18: atk_sova
+  19: atk_viper
+  20: atk_yoru
+  21: def_astra
+  22: def_breach
+  23: def_brimstone
+  24: def_chamber
+  25: def_cypher
+  26: def_fade
+  27: def_gekko
+  28: def_harbor
+  29: def_jett
+  30: def_kayo
+  31: def_killjoy
+  32: def_neon
+  33: def_omen
+  34: def_phoenix
+  35: def_raze
+  36: def_reyna
+  37: def_sage
+  38: def_skye
+  39: def_sova
+  40: def_viper
+  41: def_yoru

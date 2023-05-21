@@ -36,6 +36,52 @@ def generate_fake_icon_for_image(icon_path, agent):
     cv2.imwrite("assets\\fake_minimap_icons\\def_" + agent, def_cropped)
     # cv2.waitKey(0)
 """
+labels = {
+    "0": "atk_astra",
+    "1": "atk_breach",
+    "2": "atk_brimstone",
+    "3": "atk_chamber",
+    "4": "atk_cypher",
+    "5": "atk_fade",
+    "6": "atk_gekko",
+    "7": "atk_harbor",
+    "8": "atk_jett",
+    "9": "atk_kayo",
+    "10": "atk_killjoy",
+    "11": "atk_neon",
+    "12": "atk_omen",
+    "13": "atk_phoenix",
+    "14": "atk_raze",
+    "15": "atk_reyna",
+    "16": "atk_sage",
+    "17": "atk_skye",
+    "18": "atk_sova",
+    "19": "atk_viper",
+    "20": "atk_yoru",
+    "21": "def_astra",
+    "22": "def_breach",
+    "23": "def_brimstone",
+    "24": "def_chamber",
+    "25": "def_cypher",
+    "26": "def_fade",
+    "27": "def_gekko",
+    "28": "def_harbor",
+    "29": "def_jett",
+    "30": "def_kayo",
+    "31": "def_killjoy",
+    "32": "def_neon",
+    "33": "def_omen",
+    "34": "def_phoenix",
+    "35": "def_raze",
+    "36": "def_reyna",
+    "37": "def_sage",
+    "38": "def_skye",
+    "39": "def_sova",
+    "40": "def_viper",
+    "41": "def_yoru"
+}
+
+labels = dict((v, k) for k,v in labels.items())
 
 def generate_fake_icon_for_image(icon_path, agent):
     img = cv2.imread(icon_path,  cv2.COLOR_BGR2RGB)
@@ -90,7 +136,7 @@ def build_dataset():
     map_image = Image.open("assets\\maps\\" + selected_map)
     map_w, map_h = map_image.size
     filename = ''.join(random.choices(string.ascii_letters + string.digits, k=16))
-    txtfile = open("map_dataset\\" + filename + ".txt", "a")
+    txtfile = open("map_dataset\\labels\\" + filename + ".txt", "a")
     for agent in all_agents:
         agent_image = Image.open("assets\\fake_minimap_icons\\" + agent)
         agent_w, agent_h = agent_image.size
@@ -102,18 +148,19 @@ def build_dataset():
         center_y = (random_y + (agent_h / 2)) / map_h
         width = agent_w / map_w
         height = agent_h / map_h
-        txtfile.write("{} {:.5f} {:.5f} {:.5f} {:.5f}\n".format(label, center_x, center_y, width, height))
+        txtfile.write("{} {:.5f} {:.5f} {:.5f} {:.5f}\n".format(labels[label], center_x, center_y, width, height))
 
     txtfile.close
-    map_image.save("map_dataset\\" + filename + ".png")
+    map_image.save("map_dataset\\images\\" + filename + ".png")
     # map_image.show()
 
-        
+"""       
 f = open("yolov5labels.txt", "a")
 for agent in sorted(os.listdir("assets\\fake_minimap_icons")):
     f.write(agent + "\n")
-f.close()
+f.close() 
+"""
 
-for i in range(0, 3000):
+for i in range(1, 3000):
     build_dataset()
 # generate_fake_minimap_icons()
