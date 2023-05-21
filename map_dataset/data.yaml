@@ -1,6 +1,6 @@
-train: ../train/images
-val: ../valid/images
-test: ../test/images
+train: ./train/images
+val: ./valid/images
+test: ./test/images
 
 nc: 42
 names: ['atk_astra', 'atk_breach', 'atk_brimstone', 'atk_chamber', 'atk_cypher', 'atk_fade', 'atk_gekko', 'atk_harbor', 'atk_jett', 'atk_kayo', 'atk_killjoy', 'atk_neon', 'atk_omen', 'atk_phoenix', 'atk_raze', 'atk_reyna', 'atk_sage', 'atk_skye', 'atk_sova', 'atk_viper', 'atk_yoru', 'def_astra', 'def_breach', 'def_brimstone', 'def_chamber', 'def_cypher', 'def_fade', 'def_gekko', 'def_harbor', 'def_jett', 'def_kayo', 'def_killjoy', 'def_neon', 'def_omen', 'def_phoenix', 'def_raze', 'def_reyna', 'def_sage', 'def_skye', 'def_sova', 'def_viper', 'def_yoru']
