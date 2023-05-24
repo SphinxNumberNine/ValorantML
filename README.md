@@ -14,10 +14,18 @@ Data Labeling Instructions:
 
 Immediate Tasks:
 - build ultimate classifier
+    - only need to classify ult vs non-ult
+    - do not train on LOCK/IN tournament screenshots, hud looks different than for VCT
+
+    - look in full_processing.py, find getUltCrops method
+    - use processVOD method to get full images
+    - pass in vod from VCT, not LOCK//IN
     - crop screenshots to only ults, classify the same way we did for agents
-- dot counter for abilities (ASHWATH)
+- dot counter for abilities (ASHWATH) DONE
 - internal state logic for current "inventory" of abilities
-- capturing current round time, starting timer thread when bomb gets planted
+- capturing current round time, starting timer thread when bomb gets planted (OBSOLETE IDEA)
+    - NEW IDEA: calculate time based on current frame number / fps
+- figure out astra edge case
 
 Ways Rounds Can End: (investigate later)
 - Eliminations (either side)

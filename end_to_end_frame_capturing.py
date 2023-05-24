@@ -45,14 +45,14 @@ def processVOD(vodName, vodUrl, startTime, duration):
         for i in range(0, frame_skip):
             cap.read()
         success, img = cap.read()
-        cv2.imshow("Image", img)
-        cv2.waitKey(1)
+        # cv2.imshow("Image", img)
+        # cv2.waitKey(1)
 
         if frame_count % 300 == 0:
             file_name = "test_screenshots\\" + vodName + \
                 str(capture_counter) + ".png"
             capture_names.append(file_name)
-            cv2.imwrite(file_name, img)
+            # cv2.imwrite(file_name, img)
             capture_counter += 1
 
         frame_count += 1
@@ -85,17 +85,19 @@ def processSingleImage(filePath, left_agents, right_agents):
         player1_left = cropped_image[y:y+y_offset, x:x+x_offset].copy()
         print("left processing " + left_agents[counter])
         crop_single_hud(player1_left)
+        crop_ult(player1_left)
         hud_icon_left = player1_left[0:icon_y_offset, 0:icon_x_offset].copy()
         player1_right = cropped_image_2[y:y+y_offset, x:x+x_offset].copy()
         crop_single_hud(cv2.flip(player1_right, 1))
+        crop_ult(cv2.flip(player1_right, 1))
         hud_icon_right = (cv2.flip(player1_right, 1))[
             0:icon_y_offset, 0:icon_x_offset].copy()
         # cv2.imwrite("test_crops\\left_" + file_name + ".png", player1_left)
         # cv2.imwrite("test_crops\\right_" + file_name + ".png", player1_right)
-        cv2.imwrite("test_dataset\\" + left_agents[counter] + "\\" +
-                    file_name + ".png", hud_icon_left)
-        cv2.imwrite("test_dataset\\" + right_agents[counter] + "\\" +
-                    file_name + ".png", hud_icon_right)
+        # cv2.imwrite("test_dataset\\" + left_agents[counter] + "\\" +
+                    # file_name + ".png", hud_icon_left)
+        # cv2.imwrite("test_dataset\\" + right_agents[counter] + "\\" +
+                    # file_name + ".png", hud_icon_right)
         counter += 1
 
 
@@ -227,6 +229,16 @@ def crop_single_hud(single_hud_img):  # non-astra usecase
 
     cv2.waitKey(0)
 
+def crop_ult(single_hud_img):
+    start_point = (150, 60)
+    x = start_point[0]
+    y = start_point[1]
+    x_offset, y_offset = 90, 30
+    img = single_hud_img.copy()
+    h, w, alpha = img.shape
+    crop = img[y: y + y_offset, x: x + x_offset]
+    print("ULT BLOBS")
+    count_blobs(crop)
 
-processSingleImage("screenshots\\C9vsDRXHaven6.png", ["cypher", "skye", "omen", "phoenix", "chamber"], ["sova", "jett", "breach", "omen", "killjoy"])
+# processSingleImage("test_screenshots\\100TvsLEVLotus7.png", ["cypher", "skye", "omen", "phoenix", "chamber"], ["sova", "jett", "breach", "omen", "killjoy"])
 # processVOD("any", "https://www.youtube.com/watch?v=KQyCe2v_Wws", 513, 3445)
