@@ -166,27 +166,89 @@ def cropKillfeed(frame):
         crop = frame[(i * 39) + 96: ((i + 1) * 39) + 96, 1330:1920]
         kill_events.append(crop)
     return kill_events
-    
+
+def cropRoundNumber(frame):
+    start_y, end_y = 7, 21
+    start_x, end_x = 900, 1030
+    crop = frame[start_y: end_y, start_x: end_x]
+    return crop
+
+def cropLeftScore(frame):
+    start_y, end_y = 15, 70
+    start_x, end_x = 800, 850
+    crop = frame[start_y: end_y, start_x: end_x]
+    return crop
+
+def cropRightScore(frame):
+    start_y, end_y = 15, 70
+    start_x, end_x = 1070, 1120
+    crop = frame[start_y: end_y, start_x: end_x]
+    return crop
+
+def cropRoundTimer(frame):
+    start_y, end_y = 23, 65
+    start_x, end_x = 900, 1030
+    crop = frame[start_y: end_y, start_x: end_x]
+    return crop
 
 # returns images of all points of interest on the full frame
 def cropFrame(frame):
     # datatypes: [img], [img], img, img, img, img, [img]
     left_players, right_players = cropPlayerHuds(frame)
+    round_timer = cropRoundTimer(frame)
+    left_score = cropLeftScore(frame)
+    right_score = cropRightScore(frame)
+    round_number = cropRoundNumber(frame)
+    killfeed = cropKillfeed(frame)
     return left_players, right_players, round_timer, left_score, right_score, round_number, killfeed
+
+def reverseRightPlayer(playerCrop):
+    playerCrop.playerName = cv2.flip(playerCrop.playerName, 1)
+    playerCrop.playerCredits = cv2.flip(playerCrop.playerCredits, 1)
+    playerCrop.ability1 = cv2.flip(playerCrop.ability1, 1)
+    playerCrop.ability2 = cv2.flip(playerCrop.ability2, 1)
+    playerCrop.ability3 = cv2.flip(playerCrop.ability3, 1)
+    playerCrop.ult = cv2.flip(playerCrop.ult, 1)
+    playerCrop.playerArmor = cv2.flip(playerCrop.playerArmor, 1)
+    playerCrop.playerHealth = cv2.flip(playerCrop.playerHealth, 1)
+    return playerCrop
+
+def showPlayerCrops(playerCrops):
+    cv2.imshow("agent image", playerCrops.agentImage)
+    cv2.imshow("player name", playerCrops.playerName)
+    cv2.imshow("player credits", playerCrops.playerCredits)
+    cv2.imshow("ability 1", playerCrops.ability1)
+    cv2.imshow("ability 2", playerCrops.ability2)
+    cv2.imshow("ability 3", playerCrops.ability3)
+    cv2.imshow("ult", playerCrops.ult)
+    cv2.imshow("armor", playerCrops.playerArmor)
+    cv2.imshow("health", playerCrops.playerHealth)
+    cv2.waitKey(0)
+
 
 def processFrame(frame):
     frame = cv2.resize(frame, (1920, 1080), 0, 0)
+    left_players, right_players, round_timer, left_score, right_score, round_number, killfeed = cropFrame(frame)
+    counter = 0
+    cv2.imshow("left score", left_score)
+    cv2.imshow("right score", right_score)
+    cv2.imshow("round timer", round_timer)
+    cv2.imshow("round number", round_number)
+    
+    for player in right_players:
+        crops = cropIndividualPlayer(player)
+        crops = reverseRightPlayer(crops)
+        showPlayerCrops(crops)
+        cv2.imwrite("players\\{}.png".format(counter), crops.playerName)
+        counter += 1
+    counter = 0
+    for kill_event in killfeed:
+        cv2.imwrite("killfeed\\{}.png".format(counter), kill_event)
+        counter += 1
+    # return capture_names
 
 
-    return capture_names
-
-path = "screenshots\\C9vsDRXHaven18.png"
+path = "test_screenshots\\100TvsLEVLotus4.png"
 img = cv2.imread(path)
-killEvents = cropKillfeed(img)
-counter = 0
-for event in killEvents:
-    cv2.imshow("test", event)
-    cv2.imwrite("killfeed\\{}.png".format(counter), event)
-    cv2.waitKey(0)
-    counter += 1
+processFrame(img)
 
