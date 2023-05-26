@@ -6,17 +6,7 @@ import os
 import json
 import threading
 import numpy as np
-
-class PlayerCrops:
-    agentImage = None
-    playerName = None
-    playerCredits = None
-    ability1 = None
-    ability2 = None
-    ability3 = None
-    ult = None
-    playerArmor = None
-    playerHealth = None
+from models.image_utils import PlayerCrops
 
 def getVideoCapture(vodUrl):
     # Getting video id from the url string
@@ -239,16 +229,16 @@ def processFrame(frame):
         crops = cropIndividualPlayer(player)
         crops = reverseRightPlayer(crops)
         showPlayerCrops(crops)
-        cv2.imwrite("players\\{}.png".format(counter), crops.playerName)
+        # cv2.imwrite("players\\{}.png".format(counter), crops.playerName)
         counter += 1
     counter = 0
     for kill_event in killfeed:
-        cv2.imwrite("killfeed\\{}.png".format(counter), kill_event)
+        # cv2.imwrite("killfeed\\{}.png".format(counter), kill_event)
         counter += 1
     # return capture_names
 
 
-path = "test_screenshots\\100TvsLEVLotus4.png"
+path = "assets\\test_screenshots\\100TvsLEVLotus4.png"
 img = cv2.imread(path)
 processFrame(img)
 
