@@ -159,20 +159,234 @@ class Harbor(Agent):
                          ability3Max=1,
                          ultName="reckoning",
                          ultOrbsRequired=7)
+
+class Jett(Agent):
+    def __init__():
+        super().__init__(name="jett", 
+                         type=Agents.JETT, 
+                         role=AgentRole.DUELIST, 
+                         ability1Name="cloudburst", 
+                         ability1Max=2,
+                         ability2Name="updraft",
+                         ability2Max=2,
+                         ability3Name="tailwind",
+                         ability3Max=1,
+                         ultName="bladestorm",
+                         ultOrbsRequired=7)
+
+class Kayo(Agent):
+    def __init__():
+        super().__init__(name="kayo", 
+                         type=Agents.KAYO, 
+                         role=AgentRole.INITIATOR, 
+                         ability1Name="frag/ment", 
+                         ability1Max=1,
+                         ability2Name="flash/drive",
+                         ability2Max=2,
+                         ability3Name="zero/point",
+                         ability3Max=1,
+                         ultName="null/cmd",
+                         ultOrbsRequired=8)
+
+class Killjoy(Agent):
+    def __init__():
+        super().__init__(name="killjoy", 
+                         type=Agents.KILLJOY, 
+                         role=AgentRole.SENTINEL, 
+                         ability1Name="nanoswarm", 
+                         ability1Max=2,
+                         ability2Name="alarmbot",
+                         ability2Max=1,
+                         ability3Name="turret",
+                         ability3Max=1,
+                         ultName="lockdown",
+                         ultOrbsRequired=8)
+
+class Neon(Agent):
+    def __init__():
+        super().__init__(name="neon", 
+                         type=Agents.NEON, 
+                         role=AgentRole.DUELIST, 
+                         ability1Name="fast lane", 
+                         ability1Max=1,
+                         ability2Name="relay bolt",
+                         ability2Max=2,
+                         ability3Name="high gear",
+                         ability3Max=1,
+                         ultName="overdrive",
+                         ultOrbsRequired=7)
         
+class Omen(Agent):
+    def __init__():
+        super().__init__(name="omen", 
+                         type=Agents.OMEN, 
+                         role=AgentRole.CONTROLLER, 
+                         ability1Name="shrouded step", 
+                         ability1Max=2,
+                         ability2Name="paranoia",
+                         ability2Max=1,
+                         ability3Name="dark cover",
+                         ability3Max=2,
+                         ultName="from the shadows",
+                         ultOrbsRequired=7)
+
+class Phoenix(Agent):
+    def __init__():
+        super().__init__(name="phoenix", 
+                         type=Agents.PHOENIX, 
+                         role=AgentRole.DUELIST, 
+                         ability1Name="blaze", 
+                         ability1Max=1,
+                         ability2Name="curveball",
+                         ability2Max=2,
+                         ability3Name="hot hands",
+                         ability3Max=1,
+                         ultName="run it back",
+                         ultOrbsRequired=6)
+
+class Raze(Agent):
+    def __init__():
+        super().__init__(name="raze", 
+                         type=Agents.RAZE, 
+                         role=AgentRole.DUELIST, 
+                         ability1Name="boom bot", 
+                         ability1Max=1,
+                         ability2Name="blast pack",
+                         ability2Max=2,
+                         ability3Name="paint shells",
+                         ability3Max=1,
+                         ultName="showstopper",
+                         ultOrbsRequired=8)
+
+class Reyna(Agent):
+    def __init__():
+        super().__init__(name="reyna", 
+                         type=Agents.REYNA, 
+                         role=AgentRole.DUELIST, 
+                         ability1Name="leer", 
+                         ability1Max=2,
+                         ability2Name="devour",
+                         ability2Max=2,
+                         ability3Name="dismiss",
+                         ability3Max=2,
+                         ultName="empress",
+                         ultOrbsRequired=8)
+
+class Sage(Agent):
+    def __init__():
+        super().__init__(name="sage", 
+                         type=Agents.SAGE, 
+                         role=AgentRole.SENTINEL, 
+                         ability1Name="barrier orb", 
+                         ability1Max=1,
+                         ability2Name="slow orb",
+                         ability2Max=2,
+                         ability3Name="healing orb",
+                         ability3Max=1,
+                         ultName="resurrection",
+                         ultOrbsRequired=8)
+
+class Skye(Agent):
+    def __init__():
+        super().__init__(name="skye", 
+                         type=Agents.SKYE, 
+                         role=AgentRole.INITIATOR, 
+                         ability1Name="regrowth", 
+                         ability1Max=1,
+                         ability2Name="trailblazer",
+                         ability2Max=1,
+                         ability3Name="guiding light",
+                         ability3Max=2,
+                         ultName="seekers",
+                         ultOrbsRequired=7)
+
+class Sova(Agent):
+    def __init__():
+        super().__init__(name="sova", 
+                         type=Agents.SOVA, 
+                         role=AgentRole.INITIATOR, 
+                         ability1Name="owl drone", 
+                         ability1Max=1,
+                         ability2Name="shock bolt",
+                         ability2Max=2,
+                         ability3Name="recon bolt",
+                         ability3Max=1,
+                         ultName="hunter's fury",
+                         ultOrbsRequired=8)
+
+class Viper(Agent):
+    def __init__():
+        super().__init__(name="viper", 
+                         type=Agents.VIPER, 
+                         role=AgentRole.CONTROLLER, 
+                         ability1Name="snake bite", 
+                         ability1Max=2,
+                         ability2Name="poison cloud",
+                         ability2Max=1,
+                         ability3Name="toxic screen",
+                         ability3Max=1,
+                         ultName="viper's pit",
+                         ultOrbsRequired=8)
+
+class Yoru(Agent):
+    def __init__():
+        super().__init__(name="yoru", 
+                         type=Agents.YORU, 
+                         role=AgentRole.DUELIST, 
+                         ability1Name="fakeout", 
+                         ability1Max=1,
+                         ability2Name="blindside",
+                         ability2Max=2,
+                         ability3Name="gatecrash",
+                         ability3Max=2,
+                         ultName="dimensional drift",
+                         ultOrbsRequired=7)
+
+class Side(Enum):
+    ATTACKER = 0
+    DEFENDER = 1
+
+class Player:
+    def __init__(self, name, agent, team):
+        self.name = name
+        self.agent = agent
+        self.team = team
 
 
 class PlayerState:
-
+    ability1Current = 0
+    ability2Current = 0
+    ability3Current = 0
+    credits = 0
+    armor = 0
+    health = 0
+    def __init__(self, player):
+        self.player = player
 
 class TeamState:
     score = 0
-    name = ""
+    def __init__(self, name, startingSide, currentSide, playerStates):
+        self.name = name
+        self.startingSide = startingSide
+        self.currentSide = currentSide
+        self.playerStates = playerStates # list
 
 class RoundState:
     roundStatus = RoundStatus.PRE_ROUND
     roundTime = 0 # in seconds
-    team1Score = 0
-    team2Score = 0
+    def __init__(self, roundNumber):
+        self.roundNumber = roundNumber
+
+class Half(Enum):
+    FIRST = 0
+    SECOND = 1
+    OVERTIME = 2
+
+class GameState:
+    currentRoundNumber = 0
+    half = Half.FIRST
+    team1State = None
+    team2State = None
+    currentRoundState = None
 
    
