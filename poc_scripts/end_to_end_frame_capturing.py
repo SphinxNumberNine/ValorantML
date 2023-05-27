@@ -45,14 +45,14 @@ def processVOD(vodName, vodUrl, startTime, duration):
         for i in range(0, frame_skip):
             cap.read()
         success, img = cap.read()
-        # cv2.imshow("Image", img)
-        # cv2.waitKey(1)
+        cv2.imshow("Image", img)
+        cv2.waitKey(1)
 
         if frame_count % 300 == 0:
-            file_name = "test_screenshots\\" + vodName + \
+            file_name = "assets\\test_screenshots\\" + vodName + \
                 str(capture_counter) + ".png"
             capture_names.append(file_name)
-            # cv2.imwrite(file_name, img)
+            cv2.imwrite(file_name, img)
             capture_counter += 1
 
         frame_count += 1
@@ -241,4 +241,4 @@ def crop_ult(single_hud_img):
     count_blobs(crop)
 
 # processSingleImage("test_screenshots\\100TvsLEVLotus7.png", ["cypher", "skye", "omen", "phoenix", "chamber"], ["sova", "jett", "breach", "omen", "killjoy"])
-# processVOD("any", "https://www.youtube.com/watch?v=KQyCe2v_Wws", 513, 3445)
+processVOD("any", "https://www.youtube.com/watch?v=KQyCe2v_Wws", 513, 3445)
