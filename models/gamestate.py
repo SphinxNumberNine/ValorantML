@@ -3,7 +3,7 @@ class RoundStatus(Enum):
     PRE_ROUND = 0
     ROUND_STARTED = 1
     SPIKE_PLANTED = 2
-    ROUND_ENDED = 3
+    ROUND_ENDED = 3 # also basically a "postround started status"
 
 class Side(Enum):
     ATTACKER = 0
@@ -46,10 +46,11 @@ class Half(Enum):
     OVERTIME = 2
 
 class GameState:
-    currentRoundNumber = 0
+    currentRoundNumber = 1
     half = Half.FIRST
     team1State = None
     team2State = None
     currentRoundState = None
+    gameFinished = False
 
    

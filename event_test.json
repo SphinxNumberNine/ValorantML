@@ -1,0 +1,73 @@
+[
+    {
+        "event_id": "some cryptographic unique hash",
+        "event_type": "GAME_STARTED",
+        "map": "lotus",
+        "agent mapping": {
+            "team1": {
+                "name": "fnatic",
+                "agents": [
+                    {
+                        "playername": "derke",
+                        "agent": "raze"
+                    },
+                    {
+                        "playername": "derke",
+                        "agent": "raze"
+                    }
+                    {
+                        "playername": "derke",
+                        "agent": "raze"
+                    }
+                    {
+                        "playername": "derke",
+                        "agent": "raze"
+                    }
+                    {
+                        "playername": "derke",
+                        "agent": "raze"
+                    }
+                ]
+            },
+            "team2": {
+                "name": "navi",
+                "agents": [
+                    {
+                        "playername": "ange1",
+                        "agent": "raze"
+                    },
+                    {
+                        "playername": "derke",
+                        "agent": "raze"
+                    }
+                    {
+                        "playername": "derke",
+                        "agent": "raze"
+                    }
+                    {
+                        "playername": "derke",
+                        "agent": "raze"
+                    }
+                    {
+                        "playername": "derke",
+                        "agent": "raze"
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "event_id": "some cryptographic unique hash",
+        "event_type": "kill",
+        "killer": "derke",
+        "kilee": "derke",
+        "frame_id": "some cryptographic hash"
+    },
+    {
+        "event_id": "some cryptographic unique hash",
+        "event_type": "ability_used",
+        "user": "ange1",
+        "ability": "recon dart",
+        "frame_id"
+    }
+]
