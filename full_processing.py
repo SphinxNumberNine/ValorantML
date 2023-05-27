@@ -81,17 +81,22 @@ def processFrame(frame):
         crops = cropping_agent.cropIndividualPlayer(player)
         crops = cropping_agent.reverseRightPlayer(crops)
         cropping_agent.showPlayerCrops(crops)
-        # cv2.imwrite("players\\{}.png".format(counter), crops.playerName)
+        cv2.imwrite("assets\\players\\{}.png".format(counter), player)
         counter += 1
-    counter = 0
-    for kill_event in killfeed:
+    for player in left_players:
+        crops = cropping_agent.cropIndividualPlayer(player)
+        cropping_agent.showPlayerCrops(crops)
+        cv2.imwrite("assets\\players\\{}.png".format(counter), player)
+        counter += 1
+    # counter = 0
+    # for kill_event in killfeed:
         # cv2.imwrite("killfeed\\{}.png".format(counter), kill_event)
-        counter += 1
+        # counter += 1
     # return capture_names
 
 
-path = "assets\\test_screenshots\\100TvsLEVLotus4.png"
+path = "assets\\test_screenshots\\any1.png"
 img = cv2.imread(path)
-cropping_agent = Cropping("hud_config.json")
+cropping_agent = Cropping("preround_hud_config.json")
 processFrame(img)
 
