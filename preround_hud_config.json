@@ -167,5 +167,15 @@
             "start": 23,
             "end": 65
         }
+    }, 
+    "loadout_value_label": {
+        "x": {
+            "start": 130,
+            "end": 415
+        },
+        "y": {
+            "start": 690,
+            "end": 715
+        }
     }
 }

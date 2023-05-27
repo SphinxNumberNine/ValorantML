@@ -9,7 +9,10 @@ import numpy as np
 from models.image_utils import PlayerCrops
 from models.gamestate import *
 from models.events import *
+from models.frame import *
 from processing.cropping import Cropping
+from processing.text_detection import TextDetector
+import time
 
 def getVideoCapture(vodUrl):
     # Getting video id from the url string
@@ -51,6 +54,31 @@ def processVOD(vodName, vodUrl, startTime, duration):
         # process image
         frame_count += 1
 
+def determineFrameType(frame, left_score, right_score):
+    loadoutValueLabel = cropping_agent.getLoadoutValueLabel(frame)
+    left_score = cv2.resize(left_score, (0,0), fx=3, fy=3)
+    right_score = cv2.resize(right_score, (0,0), fx=3, fy=3)
+    # loadoutValueLabel = cv2.resize(loadoutValueLabel, (0,0), fx=3, fy=3)
+    # cv2.imshow("loadout value", loadoutValueLabel)
+    # cv2.imshow("left score", left_score)
+    # cv2.imshow("right score", right_score)
+    # cv2.waitKey(0)
+    leftScoreText = text_detection_agent.parseOutput(text_detection_agent.readNumbersFromImage(left_score))
+    rightScoreTest = text_detection_agent.parseOutput(text_detection_agent.readNumbersFromImage(right_score))
+    if leftScoreText is not None and rightScoreTest is not None:
+        print("Game Frame")
+        # TODO check game state, if in round then no need to check for preround frame
+        loadoutValueText = text_detection_agent.parseOutput(text_detection_agent.readTextFromImage(loadoutValueLabel))
+        if loadoutValueText is not None and "loadout value" in loadoutValueText.lower():
+            print("PreRound Frame")
+            return FrameType.PRE_ROUND_FRAME
+        else:
+            print("Round Frame")
+            return FrameType.ROUND_FRAME
+    else:
+        print("Non Game Frame")
+        return FrameType.NON_GAME_FRAME
+
 # full processing of first screenshot seen
 # calls agent classifier and easyocr to map player name to agent
 # creates gamestate, teamstates, first roundstate
@@ -69,8 +97,10 @@ def initialProcessing(frame):
 # calls easyocr for score / round number / round timer
 def processFrame(frame):
     frame = cv2.resize(frame, (1920, 1080), 0, 0)
-    # TODO: determine what type of frame it is
     left_players, right_players, round_timer, left_score, right_score, round_number, killfeed = cropping_agent.cropFrame(frame)
+    # TODO: determine what type of frame it is
+    determineFrameType(frame, left_score, right_score)
+    
     counter = 0
     cv2.imshow("left score", left_score)
     cv2.imshow("right score", right_score)
@@ -80,14 +110,14 @@ def processFrame(frame):
     for player in right_players:
         crops = cropping_agent.cropIndividualPlayer(player)
         crops = cropping_agent.reverseRightPlayer(crops)
-        cropping_agent.showPlayerCrops(crops)
-        cv2.imwrite("assets\\players\\{}.png".format(counter), player)
+        # cropping_agent.showPlayerCrops(crops)
+        # cv2.imwrite("assets\\players\\{}.png".format(counter), player)
         counter += 1
     for player in left_players:
         crops = cropping_agent.cropIndividualPlayer(player)
-        cropping_agent.showPlayerCrops(crops)
-        cv2.imwrite("assets\\players\\{}.png".format(counter), player)
-        counter += 1
+        # cropping_agent.showPlayerCrops(crops)
+        # cv2.imwrite("assets\\players\\{}.png".format(counter), player)
+        # counter += 1
     # counter = 0
     # for kill_event in killfeed:
         # cv2.imwrite("killfeed\\{}.png".format(counter), kill_event)
@@ -95,8 +125,13 @@ def processFrame(frame):
     # return capture_names
 
 
-path = "assets\\test_screenshots\\any1.png"
+# path = "assets\\test_screenshots\\any1.png"
+path = "test_screenshots\capture93619842.png"
 img = cv2.imread(path)
 cropping_agent = Cropping("preround_hud_config.json")
+text_detection_agent = TextDetector()
+curr = round(time.time() * 1000)
 processFrame(img)
+curr = round(time.time() * 1000) - curr
+print(str(curr))
 
