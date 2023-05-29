@@ -167,5 +167,35 @@
             "start": 23,
             "end": 65
         }
+    },
+    "loadout_value_label": {
+        "x": {
+            "start": 130,
+            "end": 415
+        },
+        "y": {
+            "start": 690,
+            "end": 715
+        }
+    },
+    "left_team_name": {
+        "x": {
+            "start": 710,
+            "end": 790
+        },
+        "y": {
+            "start": 15,
+            "end": 70
+        }
+    },
+    "right_team_name": {
+        "x": {
+            "start": 1130,
+            "end": 1210
+        },
+        "y": {
+            "start": 15,
+            "end": 70
+        }
     }
 }

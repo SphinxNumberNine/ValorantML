@@ -84,7 +84,18 @@ def determineFrameType(frame, left_score, right_score):
 # creates gamestate, teamstates, first roundstate
 def initialProcessing(frame):
     frame = cv2.resize(frame, (1920, 1080), 0, 0)
-    left_players, right_players, round_timer, left_score, right_score, round_number, killfeed = cropFrame(frame)
+    left_players, right_players, round_timer, left_score, right_score, round_number, killfeed = cropping_agent.cropFrame(frame)
+    left_name, right_name = cropping_agent.getTeamNames(frame)
+    left_name = cv2.resize(left_name, (0,0), fx=3, fy=3)
+    right_name = cv2.resize(right_name, (0,0), fx=3, fy=3)
+    text_detection_agent.parseOutput(text_detection_agent.readTextFromImage(left_name))
+    text_detection_agent.parseOutput(text_detection_agent.readTextFromImage(right_name))
+    for player in right_players:
+        crops = cropping_agent.cropIndividualPlayer(player)
+        crops = cropping_agent.reverseRightPlayer(crops)
+        text_detection_agent.parseOutput(text_detection_agent.readTextFromImage(crops.playerName))
+    gamestate = GameState()
+
     # for each player in left_players and right_players
         # call agent classifier
         # call easyocr to read player name
@@ -100,6 +111,7 @@ def processFrame(frame):
     left_players, right_players, round_timer, left_score, right_score, round_number, killfeed = cropping_agent.cropFrame(frame)
     # TODO: determine what type of frame it is
     determineFrameType(frame, left_score, right_score)
+    initialProcessing(frame)
     
     counter = 0
     cv2.imshow("left score", left_score)
@@ -125,10 +137,10 @@ def processFrame(frame):
     # return capture_names
 
 
-# path = "assets\\test_screenshots\\any1.png"
-path = "test_screenshots\capture93619842.png"
+path = "assets\\test_screenshots\\any1.png"
+# path = "test_screenshots\capture93619842.png"
 img = cv2.imread(path)
-cropping_agent = Cropping("preround_hud_config.json")
+cropping_agent = Cropping("config\\preround_hud_config.json")
 text_detection_agent = TextDetector()
 curr = round(time.time() * 1000)
 processFrame(img)
