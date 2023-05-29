@@ -8,6 +8,8 @@ import pickle
 base_url = "https://www.vlr.gg"
 match_url_example = "https://www.vlr.gg/184513/zeta-division-vs-team-secret-champions-tour-2023-pacific-league-playoffs-ur1/?game=119677&tab=overview"
 all_pacific_games_url = 'https://www.vlr.gg/event/matches/1191/champions-tour-2023-pacific-league/?series_id=all'
+all_americas_games_url = "https://www.vlr.gg/event/matches/1189/champions-tour-2023-americas-league/?series_id=all"
+all_emea_games_url = "https://www.vlr.gg/event/matches/1190/champions-tour-2023-emea-league/?series_id=all"
 map_url_example = "https://www.vlr.gg/184513/zeta-division-vs-team-secret-champions-tour-2023-pacific-league-playoffs-ur1/?map=1"
 bo5_example = "https://www.vlr.gg/184522/paper-rex-vs-drx-champions-tour-2023-pacific-league-playoffs-gf"
 player_url_example = "https://www.vlr.gg/player/17086/something"
@@ -33,11 +35,11 @@ class VLRScraper():
         if os.path.exists(self.map_links_cache_path):
             self.maps_cache = pd.read_pickle(self.map_links_cache_path)
         else:
-            self.maps_cache = pd.DataFrame(columns=["map_link", "vod_link", "team names", "comp_mappings"])
+            self.maps_cache = pd.DataFrame(columns=["map_link", "vod_link", "team_names", "comp_mappings"])
         
 
     def getMatchLinks(self, region_all_matches_link):
-        response = requests.get(all_pacific_games_url)
+        response = requests.get(region_all_matches_link)
         soup = BeautifulSoup(response.text, 'html.parser')
         all_matches = soup.findAll("a", class_="match-item")
         print(all_matches)
@@ -59,8 +61,10 @@ class VLRScraper():
         vod_links = vods_container.findAll("a", href=True)
         vod_links_list = []
         for vod in vod_links:
-            print(vod['href'])
-            vod_links_list.append(vod['href'])
+            regex_exp = re.compile(r"Map \d")
+            if len(regex_exp.findall(vod.get_text().strip())) > 0:
+                print(vod['href'])
+                vod_links_list.append(vod['href'])
         print(vod_links_list)
         map_links = soup.findAll("div", class_="vm-stats-gamesnav-item")
         links = []
@@ -151,6 +155,8 @@ class VLRScraper():
 
 
 vlr = VLRScraper()
-vlr.execute(all_pacific_games_url)
+# vlr.execute(all_pacific_games_url)
+# vlr.execute(all_americas_games_url)
+# vlr.execute(all_emea_games_url)
 # vlr.viewPlayerCache()
 vlr.viewMapsCache()
