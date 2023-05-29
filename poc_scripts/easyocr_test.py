@@ -4,6 +4,6 @@ import time
 reader = easyocr.Reader(['en'], gpu=True)
 
 print(str(round(time.time() * 1000)))
-result = reader.readtext('assets\\test_killfeed.png')
+result = reader.readtext('assets\\killfeed_examples\\0.png')
 print(result)
 print(str(round(time.time() * 1000)))

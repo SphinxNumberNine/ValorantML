@@ -130,14 +130,14 @@ def processFrame(frame):
         # cropping_agent.showPlayerCrops(crops)
         # cv2.imwrite("assets\\players\\{}.png".format(counter), player)
         # counter += 1
-    # counter = 0
-    # for kill_event in killfeed:
-        # cv2.imwrite("killfeed\\{}.png".format(counter), kill_event)
-        # counter += 1
+    counter = 0
+    for kill_event in killfeed:
+        cv2.imwrite("assets\\killfeed_examples\\{}.png".format(counter), kill_event)
+        counter += 1
     # return capture_names
 
 
-path = "assets\\test_screenshots\\any1.png"
+path = "assets\\screenshots\\C9vsDRXHaven4.png"
 # path = "test_screenshots\capture93619842.png"
 img = cv2.imread(path)
 cropping_agent = Cropping("config\\preround_hud_config.json")
