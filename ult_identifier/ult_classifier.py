@@ -198,14 +198,12 @@ def getUltCrop(player_hud):
     return ult_crop
 
 
-#Ask User for Game Title, save as VodName. Check for redundancy
-#Repeat this line 10 times for C9vEG, for 10 different rounds. Put the timestamp in seconds as the 3rd arg. This should produce 10 frames
-processVOD("C9vsEGFracture","https://www.youtube.com/watch?v=64LZbF7LtUo", 1810, 5) #Keep the last arg 5
+
+processVOD("2KvsBAAMPearl","https://www.youtube.com/watch?v=p7-vOEi7qbs", 7938, 5) #Keep the last arg 5
 
 #Loop through all 10 frames, hardcode agent names (Ask user to input agent names and store in arrays)
-# "assets\\test_screenshots\\" + VodName + str(i) + ".png"
-processSingleImage("assets\\test_screenshots\\C9vsEGFracture1.png", ["brimstone", "breach", "raze", "sova", "killjoy"], ["skye", "raze", "breach", "killjoy", "brimstone"])
+processSingleImage("assets\\test_screenshots\\2KvsBAAMPearl1.png", ["jett", "kayo", "omen", "killjoy", "sova"], ["fade", "omen", "kayo", "jett", "sage"])
 
-cropPlayerHuds("assets\\test_screenshots\\C9vsEGFracture1.png", "C9vsEGFracture1")
+cropPlayerHuds("assets\\test_screenshots\\2KvsBAAMPearl1.png", "2KvsBAAMPearl1")
 
-#loop thru left_agents and right_agents, use getUltCrop() on all 10 agents and write UltCrops to new folder
+
