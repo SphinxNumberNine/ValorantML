@@ -15,8 +15,14 @@ import numpy as np
 def processVOD(vodName, vodUrl, startTime, duration):
     # Getting video id from the url string
     url_data = urllib.parse.urlparse(vodUrl)
+    print(url_data)
     query = urllib.parse.parse_qs(url_data.query)
-    id = query["v"][0]
+    print(query)
+
+    if "live" in url_data.path:
+        id = url_data.path.split("/")[2]
+    else: 
+        id = query["v"][0]
     video = 'https://youtu.be/{}'.format(str(id))
 
     # Using the pafy library for youtube videos
@@ -241,4 +247,4 @@ def crop_ult(single_hud_img):
     count_blobs(crop)
 
 # processSingleImage("test_screenshots\\100TvsLEVLotus7.png", ["cypher", "skye", "omen", "phoenix", "chamber"], ["sova", "jett", "breach", "omen", "killjoy"])
-processVOD("any", "https://www.youtube.com/watch?v=KQyCe2v_Wws", 513, 3445)
+processVOD("test_live", "https://www.youtube.com/live/WYbo5JKhTG8?feature=share&t=16353", 16353, 30)

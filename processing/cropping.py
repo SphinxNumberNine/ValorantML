@@ -198,3 +198,21 @@ class Cropping:
         cv2.imshow("armor", playerCrops.playerArmor)
         cv2.imshow("health", playerCrops.playerHealth)
         cv2.waitKey(0)
+
+    def getLoadoutValueLabel(self, frame):
+        start_x, end_x = self.config["loadout_value_label"]["x"]["start"], self.config["loadout_value_label"]["x"]["end"]
+        start_y, end_y = self.config["loadout_value_label"]["y"]["start"], self.config["loadout_value_label"]["y"]["end"]
+        crop = frame[start_y:end_y, start_x:end_x]
+        return crop
+
+    def getTeamNames(self, frame):
+        start_x, end_x = self.config["left_team_name"]["x"]["start"], self.config["left_team_name"]["x"]["end"]
+        start_y, end_y = self.config["left_team_name"]["y"]["start"], self.config["left_team_name"]["y"]["end"]
+        leftName = frame[start_y:end_y, start_x:end_x]
+
+        start_x, end_x = self.config["right_team_name"]["x"]["start"], self.config["right_team_name"]["x"]["end"]
+        start_y, end_y = self.config["right_team_name"]["y"]["start"], self.config["right_team_name"]["y"]["end"]
+        rightName = frame[start_y:end_y, start_x:end_x]
+        return leftName, rightName
+
+    

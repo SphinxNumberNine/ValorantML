@@ -1,0 +1,70 @@
+{
+    "vod_data": [
+        {
+            "name": "LOUDvFnaticSplit",
+            "url": "https://www.youtube.com/watch?v=cECiGFGOeWQ",
+            "start_time": 386,
+            "duration": 2957,
+            "left_agents": ["raze", "jett", "omen", "cypher", "sage"],
+            "right_agents": ["jett", "skye", "raze", "viper", "astra"]
+        },
+        {
+            "name": "LOUDvFnaticFracture",
+            "url": "https://www.youtube.com/watch?v=FwNLGwJzA10",
+            "start_time": 425,
+            "duration": 2620,
+            "left_agents": ["jett", "breach", "raze", "killjoy", "brimstone"],
+            "right_agents": ["breach", "raze", "brimstone", "killjoy", "fade"]
+        },
+        {
+            "name": "ShowmatchLotus",
+            "url": "https://www.youtube.com/watch?v=s7lKf6d6zXM",
+            "start_time": 814,
+            "duration": 2516,
+            "left_agents": ["omen", "killjoy", "gekko", "skye", "jett"],
+            "right_agents": ["jett", "astra", "gekko", "sova", "harbor"]
+        },
+        {
+            "name": "C9vsDRXHaven",
+            "url": "https://www.youtube.com/watch?v=z4HSe6HFK0g",
+            "start_time": 456,
+            "duration": 2424,
+            "left_agents": ["cypher", "skye", "omen", "phoenix", "chamber"],
+            "right_agents": ["sova", "jett", "breach", "omen", "killjoy"]
+        },
+        {
+            "name": "DRXvsLoudPearl",
+            "url": "https://www.youtube.com/watch?v=8I_ux5QDuXs",
+            "start_time": 2349,
+            "duration": 2172,
+            "left_agents": ["jett", "skye", "killjoy", "viper", "harbor"],
+            "right_agents": ["killjoy", "jett", "harbor", "viper", "skye"]
+        },
+        {
+            "name": "HereticsvsEGPearl",
+            "url": "https://www.youtube.com/watch?v=J-RkZgZNi1Y",
+            "start_time": 2307,
+            "duration": 2754,
+            "left_agents": ["jett", "breach", "cypher", "astra", "kayo"],
+            "right_agents": ["astra", "yoru", "jett", "fade", "killjoy"]
+        },
+        {
+            "name": "RRQvsFUTLotus",
+            "url": "https://www.youtube.com/watch?v=CZMqTbFLYTY",
+            "start_time": 1293,
+            "duration": 1996,
+            "left_agents": ["killjoy", "sage", "omen", "neon", "kayo"],
+            "right_agents": ["cypher", "reyna", "neon", "breach", "omen"]
+        }
+    ],
+    "test_vods": [
+        {
+            "name": "100TvsLEVLotus",
+            "url": "https://www.youtube.com/watch?v=KQyCe2v_Wws",
+            "start_time": 513,
+            "duration": 3445,
+            "left_agents": ["skye", "jett", "viper", "killjoy", "omen"],
+            "right_agents": ["omen", "killjoy", "viper", "skye", "jett"]
+        }
+    ]
+}

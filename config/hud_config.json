@@ -1,0 +1,201 @@
+{
+    "player_hud_full": {
+        "x" : {
+            "start": 10,
+            "end": 333
+        },
+        "y" : {
+            "start": 540,
+            "end": 1065
+        }
+    },
+    "single_player": {
+        "start_points": [
+            {
+                "x": 6,
+                "y": 10
+            },
+            {
+                "x": 6,
+                "y": 116
+            },
+            {
+                "x": 6,
+                "y": 222
+            },
+            {
+                "x": 6,
+                "y": 328
+            },
+            {
+                "x": 6,
+                "y": 434
+            }
+        ],
+        "offsets": {
+            "x": 312,
+            "y": 90
+        },
+        "health": {
+            "x": {
+                "start": 270,
+                "end": 305
+            },
+            "y" : {
+                "start": 66,
+                "end": 85
+            }
+        },
+        "armor": {
+            "x": {
+                "start": 249,
+                "end": 266
+            },
+            "y" : {
+                "start": 63,
+                "end": 85
+            }
+        },
+        "abilities": {
+            "start_points": [
+                {
+                    "x": 70,
+                    "y": 32
+                },
+                {
+                    "x": 111,
+                    "y": 32
+                },
+                {
+                    "x": 150,
+                    "y": 32
+                }
+            ],
+            "offsets": {
+                "x": 40,
+                "y": 17
+            }
+        },
+        "ult": {
+            "x": {
+                "start": 150,
+                "end": 240
+            },
+            "y" : {
+                "start": 60,
+                "end": 90
+            }
+        },
+        "credits": {
+            "x": {
+                "start": 266,
+                "end": 306
+            },
+            "y" : {
+                "start": 34,
+                "end": 50
+            }
+        },
+        "player_name": {
+            "x": {
+                "start": 0,
+                "end": 160
+            },
+            "y" : {
+                "start": 62,
+                "end": 84
+            }
+        },
+        "agent_image": {
+            "x": {
+                "start": 0,
+                "end": 72
+            },
+            "y" : {
+                "start": 0,
+                "end": 54
+            }
+        }
+    },
+    "killfeed": {
+        "x": {
+            "start": 1330,
+            "end": 1920
+        },
+        "y": {
+            "offset": 96,
+            "height": 39
+        },
+        "max_events": 11
+    },
+    "round_number": {
+        "x": {
+            "start": 900,
+            "end": 1030
+        },
+        "y" : {
+            "start": 7,
+            "end": 21
+        }
+    },
+    "left_score": {
+        "x": {
+            "start": 800,
+            "end": 850
+        },
+        "y" : {
+            "start": 15,
+            "end": 70
+        }
+    },
+    "right_score": {
+        "x": {
+            "start": 1070,
+            "end": 1120
+        },
+        "y" : {
+            "start": 15,
+            "end": 70
+        }
+    },
+    "round_timer": {
+        "x": {
+            "start": 900,
+            "end": 1030
+        },
+        "y" : {
+            "start": 23,
+            "end": 65
+        }
+    },
+    "loadout_value_label": {
+        "x": {
+            "start": 130,
+            "end": 415
+        },
+        "y": {
+            "start": 690,
+            "end": 715
+        }
+    },
+    "left_team_name": {
+        "x": {
+            "start": 710,
+            "end": 790
+        },
+        "y": {
+            "start": 15,
+            "end": 70
+        }
+    },
+    "right_team_name": {
+        "x": {
+            "start": 1130,
+            "end": 1210
+        },
+        "y": {
+            "start": 15,
+            "end": 70
+        }
+    }
+}

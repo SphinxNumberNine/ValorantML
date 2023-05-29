@@ -1,0 +1,201 @@
+{
+    "player_hud_full": {
+        "x" : {
+            "start": 25,
+            "end": 951
+        },
+        "y" : {
+            "start": 770,
+            "end": 1047
+        }
+    },
+    "single_player": {
+        "start_points": [
+            {
+                "x": 0,
+                "y": 0
+            },
+            {
+                "x": 0,
+                "y": 56
+            },
+            {
+                "x": 0,
+                "y": 112
+            },
+            {
+                "x": 0,
+                "y": 168
+            },
+            {
+                "x": 0,
+                "y": 224
+            }
+        ],
+        "offsets": {
+            "x": 924,
+            "y": 55
+        },
+        "health": {
+            "x": {
+                "start": 1,
+                "end": 3
+            },
+            "y" : {
+                "start": 1,
+                "end": 3
+            }
+        },
+        "armor": {
+            "x": {
+                "start": 1,
+                "end": 3
+            },
+            "y" : {
+                "start": 1,
+                "end": 3
+            }
+        },
+        "abilities": {
+            "start_points": [
+                {
+                    "x": 395,
+                    "y": 30
+                },
+                {
+                    "x": 443,
+                    "y": 30
+                },
+                {
+                    "x": 492,
+                    "y": 30
+                }
+            ],
+            "offsets": {
+                "x": 50,
+                "y": 18
+            }
+        },
+        "ult": {
+            "x": {
+                "start": 560,
+                "end": 645
+            },
+            "y" : {
+                "start": 2,
+                "end": 50
+            }
+        },
+        "credits": {
+            "x": {
+                "start": 833,
+                "end": 922
+            },
+            "y" : {
+                "start": 25,
+                "end": 46
+            }
+        },
+        "player_name": {
+            "x": {
+                "start": 75,
+                "end": 250
+            },
+            "y" : {
+                "start": 10,
+                "end": 37
+            }
+        },
+        "agent_image": {
+            "x": {
+                "start": 0,
+                "end": 75
+            },
+            "y" : {
+                "start": 0,
+                "end": 53
+            }
+        }
+    },
+    "killfeed": {
+        "x": {
+            "start": 1330,
+            "end": 1920
+        },
+        "y": {
+            "offset": 96,
+            "height": 39
+        },
+        "max_events": 11
+    },
+    "round_number": {
+        "x": {
+            "start": 900,
+            "end": 1030
+        },
+        "y" : {
+            "start": 7,
+            "end": 21
+        }
+    },
+    "left_score": {
+        "x": {
+            "start": 800,
+            "end": 850
+        },
+        "y" : {
+            "start": 15,
+            "end": 70
+        }
+    },
+    "right_score": {
+        "x": {
+            "start": 1070,
+            "end": 1120
+        },
+        "y" : {
+            "start": 15,
+            "end": 70
+        }
+    },
+    "round_timer": {
+        "x": {
+            "start": 900,
+            "end": 1030
+        },
+        "y" : {
+            "start": 23,
+            "end": 65
+        }
+    }, 
+    "loadout_value_label": {
+        "x": {
+            "start": 130,
+            "end": 415
+        },
+        "y": {
+            "start": 690,
+            "end": 715
+        }
+    },
+    "left_team_name": {
+        "x": {
+            "start": 710,
+            "end": 790
+        },
+        "y": {
+            "start": 15,
+            "end": 70
+        }
+    },
+    "right_team_name": {
+        "x": {
+            "start": 1130,
+            "end": 1210
+        },
+        "y": {
+            "start": 15,
+            "end": 70
+        }
+    }
+}
