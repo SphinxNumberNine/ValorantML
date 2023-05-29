@@ -100,7 +100,6 @@ def initialProcessing(frame):
         # call agent classifier
         # call easyocr to read player name
 
-
 # processes every subsequent screenshot after first
 # calls easyocr for killfeed analysis
 # calls blob detection for ability change
@@ -109,15 +108,21 @@ def initialProcessing(frame):
 def processFrame(frame):
     frame = cv2.resize(frame, (1920, 1080), 0, 0)
     left_players, right_players, round_timer, left_score, right_score, round_number, killfeed = cropping_agent.cropFrame(frame)
-    # TODO: determine what type of frame it is
-    determineFrameType(frame, left_score, right_score)
-    initialProcessing(frame)
+    frameType = determineFrameType(frame, left_score, right_score)
+    if frameType == FrameType.NON_GAME_FRAME:
+        return
+    elif frameType == FrameType.PRE_ROUND_FRAME:
+        # process round as preround
+    elif frameType == FrameType.MID_ROUND_FRAME:
+        # process round as midround frame\
+
+    # initialProcessing(frame)
     
-    counter = 0
-    cv2.imshow("left score", left_score)
-    cv2.imshow("right score", right_score)
-    cv2.imshow("round timer", round_timer)
-    cv2.imshow("round number", round_number)
+    # counter = 0
+    # cv2.imshow("left score", left_score)
+    # cv2.imshow("right score", right_score)
+    # cv2.imshow("round timer", round_timer)
+    # cv2.imshow("round number", round_number)
     
     for player in right_players:
         crops = cropping_agent.cropIndividualPlayer(player)
@@ -130,10 +135,10 @@ def processFrame(frame):
         # cropping_agent.showPlayerCrops(crops)
         # cv2.imwrite("assets\\players\\{}.png".format(counter), player)
         # counter += 1
-    counter = 0
-    for kill_event in killfeed:
-        cv2.imwrite("assets\\killfeed_examples\\{}.png".format(counter), kill_event)
-        counter += 1
+    # counter = 0
+    # for kill_event in killfeed:
+        # cv2.imwrite("assets\\killfeed_examples\\{}.png".format(counter), kill_event)
+        # counter += 1
     # return capture_names
 
 

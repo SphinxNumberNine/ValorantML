@@ -17,19 +17,19 @@ class Player:
 
 
 class PlayerState:
-    ability1Current = 0
-    ability2Current = 0
-    ability3Current = 0
-    credits = 0
-    armor = 0
-    health = 0
     def __init__(self, player):
         self.player = player
+        self.ability1Current = 0
+        self.ability2Current = 0
+        self.ability3Current = 0
+        self.credits = 0
+        self.armor = 0
+        self.health = 0
 
 class TeamState:
-    score = 0
     def __init__(self, name, startingSide, currentSide, playerStates):
         self.name = name
+        self.score = 0
         self.startingSide = startingSide
         self.currentSide = currentSide
         self.playerStates = playerStates # list
@@ -38,6 +38,8 @@ class RoundState:
     roundStatus = RoundStatus.PRE_ROUND
     roundTime = 0 # in seconds
     def __init__(self, roundNumber):
+        self.roundStatus = RoundStatus.PRE_ROUND
+        self.roundTime = 0 # in seconds
         self.roundNumber = roundNumber
 
 class Half(Enum):
@@ -46,11 +48,12 @@ class Half(Enum):
     OVERTIME = 2
 
 class GameState:
-    currentRoundNumber = 1
-    half = Half.FIRST
-    team1State = None
-    team2State = None
-    currentRoundState = None
-    gameFinished = False
+    def __init__(self):
+        self.currentRoundNumber = 1
+        self.half = Half.FIRST
+        self.team1State = None
+        self.team2State = None
+        self.currentRoundState = None
+        self.gameFinished = False
 
    

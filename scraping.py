@@ -35,7 +35,7 @@ class VLRScraper():
         if os.path.exists(self.map_links_cache_path):
             self.maps_cache = pd.read_pickle(self.map_links_cache_path)
         else:
-            self.maps_cache = pd.DataFrame(columns=["map_link", "vod_link", "team_names", "comp_mappings"])
+            self.maps_cache = pd.DataFrame(columns=["map_link", "map_name", "vod_link", "team_names", "comp_mappings"])
         
 
     def getMatchLinks(self, region_all_matches_link):
@@ -68,8 +68,11 @@ class VLRScraper():
         print(vod_links_list)
         map_links = soup.findAll("div", class_="vm-stats-gamesnav-item")
         links = []
+        map_names = []
         for map_link in map_links[1:1 + len(vod_links_list)]:
             print(map_link["data-href"])
+            map_name = map_link.find("div", attrs={"style": "margin-bottom: 2px; text-align: center; line-height: 1.5;"}).get_text().strip()
+            map_names.append(re.sub('\s+', '', map_name)[1:])
             links.append(match_page_link + "/?game=" + map_link["data-game-id"] + "&tab=overview")
 
         for link in links:
@@ -113,7 +116,7 @@ class VLRScraper():
                     print("{} {}".format(player_cell_text, agent_name))
                     comp_mappings.append((player_cell_text, agent_name))
                 print("-----")
-                newRow = {"map_link": link, "vod_link": vod_links_list.pop(), "team_names": team_names, "comp_mappings": comp_mappings}
+                newRow = {"map_link": link, "map_name": map_names.pop(), "vod_link": vod_links_list.pop(), "team_names": team_names, "comp_mappings": comp_mappings}
                 self.maps_cache = pd.concat([self.maps_cache, pd.DataFrame([newRow])])
 
         self.matches_cache.append(match_page_link)
@@ -151,12 +154,15 @@ class VLRScraper():
         print(self.matches_cache)
 
     def viewMapsCache(self):
+        # return self.maps_cache
         print(self.maps_cache)
 
 
 vlr = VLRScraper()
-# vlr.execute(all_pacific_games_url)
-# vlr.execute(all_americas_games_url)
-# vlr.execute(all_emea_games_url)
-# vlr.viewPlayerCache()
+vlr.execute(all_pacific_games_url)
+vlr.execute(all_americas_games_url)
+vlr.execute(all_emea_games_url)
 vlr.viewMapsCache()
+# vlr.viewPlayerCache()
+# vlr.viewMapsCache().to_csv("maps_cache.csv")
+# vlr.getInfoFromMatchPage("https://www.vlr.gg/167358/drx-vs-cloud9-champions-tour-2023-lock-in-s-o-paulo-alpha-qf")

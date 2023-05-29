@@ -17,9 +17,9 @@ class TextDetector:
 
     def parseOutput(self, readerOutput):
         if readerOutput == []:
-            return None
-        boundingBox, text, confidence = readerOutput[0]
-        if confidence > 0.5:
-            return text
-        else:
-            return None
+            return []
+        output = []
+        for result in readerOutput:
+            boundingBox, text, confidence = result[0]
+            output.append(text)
+        return output
