@@ -1,4 +1,5 @@
 import cv2
+import numpy as np
 
 def count_blobs(img):
     img = masked_image(img)
